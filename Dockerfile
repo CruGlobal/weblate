@@ -5,5 +5,5 @@ FROM weblate/weblate:4.11.2-1
 # https://github.com/CruGlobal/cru-terraform/tree/master/applications/weblate
 
 ENV WEBLATE_ADMIN_NAME="Weblate Admin"
-    WEBLATE_ENABLE_HTTPS=1
-    WEBLATE_IP_PROXY_HEADER=HTTP_X_FORWARDED_FOR
+ENV WEBLATE_ENABLE_HTTPS=1
+ENV WEBLATE_IP_PROXY_HEADER=HTTP_X_FORWARDED_FOR
