@@ -1,8 +1,6 @@
-<<<<<<< HEAD
-FROM weblate/weblate:4.11.2-1
-=======
-FROM weblate/weblate:4.17
->>>>>>> updatedTo4_17
+FROM weblate/weblate:4.16.4-2
+
+LABEL "com.datadoghq.ad.logs"='[{"source": "django", "service": "weblate"}]'
 
 # Defaults taken from https://raw.githubusercontent.com/WeblateOrg/docker-compose/main/environment
 # Secret/sensitive and values that vary by environment(stage|prod) are defined in Terraform or `secrets`
@@ -11,8 +9,5 @@ FROM weblate/weblate:4.17
 ENV WEBLATE_ADMIN_NAME="Weblate Admin"
 ENV WEBLATE_ENABLE_HTTPS=1
 ENV WEBLATE_IP_PROXY_HEADER=HTTP_X_FORWARDED_FOR
-<<<<<<< HEAD
-=======
 ENV SERVER_EMAIL = "azat.kooman@silkmail.org"
 ENV DEFAULT_FROM_EMAIL = "azat.kooman@silkmail.org"
->>>>>>> updatedTo4_17
