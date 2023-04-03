@@ -1,4 +1,6 @@
-FROM weblate/weblate:4.11.2-1
+FROM weblate/weblate:4.16.4-2
+
+LABEL "com.datadoghq.ad.logs"='[{"source": "django", "service": "weblate"}]'
 
 # Defaults taken from https://raw.githubusercontent.com/WeblateOrg/docker-compose/main/environment
 # Secret/sensitive and values that vary by environment(stage|prod) are defined in Terraform or `secrets`
