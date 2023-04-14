@@ -6,11 +6,17 @@ LABEL "com.datadoghq.ad.logs"='[{"source": "django", "service": "weblate"}]'
 # Secret/sensitive and values that vary by environment(stage|prod) are defined in Terraform or `secrets`
 # https://github.com/CruGlobal/cru-terraform/tree/master/applications/weblate
 
-ENV WEBLATE_ADMIN_NAME="Weblate Admin"
+ENV WEBLATE_ADMIN_NAME="AllTongues Translations"
 ENV WEBLATE_ENABLE_HTTPS=1
 ENV WEBLATE_IP_PROXY_HEADER=HTTP_X_FORWARDED_FOR
-ENV SERVER_EMAIL="azat.kooman@silkmail.org"
-ENV DEFAULT_FROM_EMAIL="azat.kooman@silkmail.org"
+ENV SERVER_EMAIL="admin@alltongues.org"
+ENV DEFAULT_FROM_EMAIL="admin@alltongues.org"
 ENV WEBLATE_REQUIRE_LOGIN=1
 ENV WEBLATE_REGISTRATION_OPEN=0
 ENV WEBLATE_DEFAULT_ACCESS_CONTROL=100
+ENV WEBLATE_EMAIL_HOST="smtp.gmail.com"
+ENV WEBLATE_EMAIL_PORT=465
+ENV WEBLATE_EMAIL_HOST_USER="azat.kooman@silkmail.org"
+ENV WEBLATE_EMAIL_HOST_PASSWORD="rdtpofiksezgdmap"
+ENV WEBLATE_EMAIL_USE_TLS=0
+ENV WEBLATE_EMAIL_USE_SSL=1
