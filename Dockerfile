@@ -1,4 +1,4 @@
-FROM weblate/weblate:4.17
+FROM weblate/weblate:4.17-2
 
 # Defaults taken from https://raw.githubusercontent.com/WeblateOrg/docker-compose/main/environment
 # Secret/sensitive and values that vary by environment(stage|prod) are defined in Terraform or `secrets`
