@@ -1,10 +1,6 @@
-<<<<<<< HEAD
-FROM weblate/weblate:4.16.4-2
+FROM weblate/weblate:4.17-2
 
 LABEL "com.datadoghq.ad.logs"='[{"source": "django", "service": "weblate"}]'
-=======
-FROM weblate/weblate:4.17-2
->>>>>>> updatedTo4_17_2
 
 # Defaults taken from https://raw.githubusercontent.com/WeblateOrg/docker-compose/main/environment
 # Secret/sensitive and values that vary by environment(stage|prod) are defined in Terraform or `secrets`
@@ -17,4 +13,4 @@ ENV WEBLATE_SERVER_EMAIL="alltongues@cru.org"
 ENV WEBLATE_DEFAULT_FROM_EMAIL="alltongues@cru.org" 
 ENV WEBLATE_REQUIRE_LOGIN=1
 ENV WEBLATE_REGISTRATION_OPEN=0
-ENV WEBLATE_DEFAULT_ACCESS_CONTROL=100
+ENV WEBLATE_DEFAULT_ACCESS_CONTROL=100r
