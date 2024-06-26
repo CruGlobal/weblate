@@ -1,4 +1,4 @@
-FROM weblate/weblate:5.5
+FROM weblate/weblate:5.6
 
 LABEL "com.datadoghq.ad.logs"='[{"source": "django", "service": "weblate"}]'
 
@@ -9,11 +9,13 @@ LABEL "com.datadoghq.ad.logs"='[{"source": "django", "service": "weblate"}]'
 ENV WEBLATE_ADMIN_NAME="AllTongues Translations"
 ENV WEBLATE_ENABLE_HTTPS=1
 ENV WEBLATE_IP_PROXY_HEADER=HTTP_X_FORWARDED_FOR
-ENV WEBLATE_SERVER_EMAIL="alltongues@cru.org"
-ENV WEBLATE_DEFAULT_FROM_EMAIL="alltongues@cru.org"
+ENV WEBLATE_SERVER_EMAIL="alltongues@cru.org" 
+ENV WEBLATE_DEFAULT_FROM_EMAIL="alltongues@cru.org" 
 ENV WEBLATE_REQUIRE_LOGIN=1
 ENV WEBLATE_REGISTRATION_OPEN=0
 ENV WEBLATE_DEFAULT_ACCESS_CONTROL=100
 ENV WEBLATE_DEFAULT_COMMITER_EMAIL="alltongues@cru.org"
 ENV WEBLATE_DEFAULT_COMMITER_NAME="AllTongues Translations"
-ENV SENTRY_DSN="https://303980c0c21526b0ca42c6ac2461098d@o4507457922662400.ingest.us.sentry.io/4507469193019392"
+ENV SENTRY_DSN="https://08d2615c0df1e1ed15f236ec42b6ded6@o4507457922662400.ingest.us.sentry.io/4507457938325504"
+ENV WEBLATE_LOCALIZE_CDN_URL="https://alltongues.org"
+ENV WEBLATE_LOCALIZE_CDN_PATH="/app/data/l10n-cdn"
