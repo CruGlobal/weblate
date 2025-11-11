@@ -1,4 +1,4 @@
-FROM weblate/weblate:5.6.2.0
+FROM weblate/weblate:5.14.3.0
 
 LABEL "com.datadoghq.ad.logs"='[{"source": "django", "service": "weblate"}]'
 
@@ -16,7 +16,8 @@ ENV WEBLATE_REGISTRATION_OPEN=0
 ENV WEBLATE_DEFAULT_ACCESS_CONTROL=100
 ENV WEBLATE_DEFAULT_COMMITER_EMAIL="alltongues@cru.org"
 ENV WEBLATE_DEFAULT_COMMITER_NAME="AllTongues Translations"
-ENV SENTRY_DSN="https://303980c0c21526b0ca42c6ac2461098d@o4507457922662400.ingest.us.sentry.io/4507469193019392"
-ENV WEBLATE_LOCALIZE_CDN_URL="https://alltongues.org"
-ENV WEBLATE_LOCALIZE_CDN_PATH="/app/data/l10n-cdn"
+ENV WEBLATE_SECURE_PROXY_SSL_HEADER=HTTP_X_FORWARDED_PROTO
+ENV SENTRY_DSN="https://08d2615c0df1e1ed15f236ec42b6ded6@o4507457922662400.ingest.us.sentry.io/4507457938325504"
+#ENV WEBLATE_LOCALIZE_CDN_URL="https://alltongues.org"
+#ENV WEBLATE_LOCALIZE_CDN_PATH="/app/data/l10n-cdn"
 ENV CELERY_MAIN_OPTIONS="celery --app=weblate.utils worker --beat --queues=celery,notify,memory,translate,backup --pool=solo"
