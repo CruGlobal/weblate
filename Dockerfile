@@ -22,5 +22,5 @@ ENV SENTRY_DSN="https://08d2615c0df1e1ed15f236ec42b6ded6@o4507457922662400.inges
 #ENV WEBLATE_LOCALIZE_CDN_PATH="/app/data/l10n-cdn"
 #ENV CELERY_MAIN_OPTIONS="--beat --scheduler django --queues=celery,notify,memory,translate,backup \
 #                         --pool=prefork --concurrency=2 --prefetch-multiplier=1 --max-tasks-per-child=50"
-CELERY_MAIN_OPTIONS="--beat --scheduler django --queues=celery,notify,memory,translate,backup \
+ENV CELERY_MAIN_OPTIONS="--beat --scheduler django --queues=celery,notify,memory,translate,backup \
                          --pool=prefork --concurrency=3 --prefetch-multiplier=1 --max-tasks-per-child=50"
