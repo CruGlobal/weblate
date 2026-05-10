@@ -1,4 +1,4 @@
-FROM weblate/weblate:5.17.1
+FROM weblate/weblate:5.17
 
 LABEL "com.datadoghq.ad.logs"='[{"source": "django", "service": "weblate"}]'
 
