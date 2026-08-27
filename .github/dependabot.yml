@@ -1,0 +1,49 @@
+# This repo is packaging over an upstream image, so the `docker` ecosystem is
+# effectively its whole update stream: the `FROM weblate/weblate:<tag>` line in
+# the Dockerfile is what actually changes. Dependabot parses that line
+# statically, so the tag must stay a literal — parameterise it with a build arg
+# and Dependabot starts proposing bumps to a tag the image never uses.
+#
+# Both `commit-message.prefix` values below MUST appear in the allowed types in
+# .github/workflows/conventional-commits.yml, or every Dependabot PR fails the
+# `Validate PR Title` check and cannot be merged. They are configured together
+# and validated by nothing.
+version: 2
+
+updates:
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 2
+    groups:
+      # Minor and patch upstream releases arrive as one grouped PR. Majors stay
+      # ungrouped so each gets its own PR and a real look; the auto-merge
+      # workflow only clears patch/minor/security, and a grouped PR reports the
+      # highest bump in the group, so a group containing a major cannot slip
+      # through.
+      docker-updates:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
+    commit-message:
+      prefix: "deps"
+      include: "scope"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 3
+    groups:
+      github-actions:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
+    commit-message:
+      prefix: "ci"
+      include: "scope"
