@@ -24,3 +24,12 @@ ENV SENTRY_DSN="https://08d2615c0df1e1ed15f236ec42b6ded6@o4507457922662400.inges
 #                         --pool=prefork --concurrency=3 --prefetch-multiplier=1 --max-tasks-per-child=50"
 ENV CELERY_SINGLE_PROCESS=1
 ENV CELERY_MAIN_OPTIONS="--pool=threads --concurrency=3 --prefetch-multiplier=1 --max-tasks-per-child=50"
+
+# Build identity, and the only value baked into the image: the same image bytes
+# run on every environment, so everything else arrives at runtime. The build
+# passes `--build-arg VERSION=<yyyy-mm-dd>-<n>`, which reaches here because
+# build.sh already forwards $DOCKER_ARGS; "dev" covers local builds. Kept last
+# on purpose — nothing in the build needs it, so a new build number invalidates
+# no earlier layer.
+ARG VERSION="dev"
+ENV DD_VERSION=${VERSION}

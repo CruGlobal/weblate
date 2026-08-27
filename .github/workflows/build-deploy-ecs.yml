@@ -1,11 +1,31 @@
 name: Build & Deploy ECS
 
+# PARKED — the previous build+deploy path, kept only as a manual escape hatch.
+#
+# It builds an environment-specific image (the branch decides the environment)
+# and pushes `<environment>-<build-number>` tags. That is exactly what
+# .github/workflows/pipeline-v2.yml replaces with one environment-agnostic image
+# promoted by digest, so this is no longer how this app ships. The file is kept
+# rather than deleted: it is the way back during the window between merging this
+# PR and applying the companion infrastructure change, and a readable record of
+# how the app shipped before.
+#
+# ⚠️ THE BUILD LEG HAS A HARD EXPIRY — READ THIS BEFORE RELYING ON IT.
+# The build job requests cloud credentials through an identity that the
+# companion infrastructure change retires, and it exposes no input to point it
+# elsewhere. That change is applied per environment, so from the moment it lands
+# for an environment, dispatching this workflow for that environment fails while
+# configuring credentials and the deploy job (`needs: build`) never runs. What
+# survives afterwards is a manual re-deploy of an image this path already built,
+# which is triggered from the deploy repository rather than from here. This is
+# NOT a fallback for "the new pipeline failed to build" — after that apply no
+# new image can be produced through this path at all.
 on:
-  push:
-    branches:
-      # Automatically build and deploy main and staging. Additional branches may be added.
-      - main
-      - staging
+  # Parked escape hatch — do not re-add push triggers. This app builds and
+  # deploys through .github/workflows/pipeline-v2.yml; this workflow stays
+  # dispatch-only. Restoring the push trigger on main would double-build every
+  # merge and push environment-specific `production-<n>` tags alongside the new
+  # pipeline's candidates.
   workflow_dispatch:
     # Allows manual build and deploy of any branch/ref
     inputs:
