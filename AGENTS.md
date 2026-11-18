@@ -51,15 +51,9 @@ image that already exists; it never rebuilds.
   database at container start, so the pipeline's separate pre-deploy migration
   step stays switched off for this app. Do not add a migration step here; if the
   upstream boot behaviour ever changes, say so rather than working around it.
-- **`build.sh` is used by both build paths** — it is `docker buildx build
+- **`build.sh` is what the build runs.** It is `docker buildx build
   $DOCKER_ARGS .`, and that `$DOCKER_ARGS` is how the version build arg reaches
   the image. Leave it alone.
-- **`.github/workflows/build-deploy-ecs.yml` is the old path, parked — not
-  removed.** It is `workflow_dispatch`-only. **Do not re-add its `push:`
-  triggers**: that would double-build every merge and push environment-specific
-  tags alongside the new pipeline's candidates. Its build leg also has a hard
-  expiry once the companion infrastructure change is applied — the header of
-  that file explains it.
 - **Dependencies are Dependabot's job.** `.github/dependabot.yml` watches the
   `FROM` line and the workflow actions, one grouped weekly PR each for
   minor+patch, majors ungrouped; `.github/workflows/dependabot-auto-merge.yml`
@@ -71,8 +65,7 @@ image that already exists; it never rebuilds.
 ## Leftovers you can ignore
 
 Everything here is pre-existing residue. It is inert — do not build on it, and
-do not "fix" it in passing. The one deliberate exception is the parked workflow
-above.
+do not "fix" it in passing.
 
 - **The `staging` branch and the fifteen `updatedTo*` / `smtp*` branches.**
   `staging` was part of the old push-to-deploy flow and has been pinned to a
